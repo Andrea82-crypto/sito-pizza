@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="La guida definitiva per risolvere il problema dell'impasto che non lievita. 15 anni di esperienza nella pizzeria in una guida pratica.">
+    <title>IMPASTO PERFETTO - La Guida Definitiva | Il Pizzaiolo</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@600;700&family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --fire-red: #D32F2F;
+            --dark-red: #8B0000;
+            --coal-black: #1a1a1a;
+            --charcoal: #2d2d2d;
+            --flour-white: #FAFAFA;
+            --honey-yellow: #FFC107;
+            --warm-orange: #FF6F00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--coal-black);
+            color: var(--flour-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--coal-black) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 70px 70px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 8vw, 72px);
+            line-height: 0.95;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--flour-white);
+            text-shadow: 0 0 30px rgba(211, 47, 47, 0.5);
+        }
+
+        .hero-text .highlight {
+            color: var(--honey-yellow);
+            display: block;
+        }
+
+        .hero-text .subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 600;
+            color: var(--honey-yellow);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-text p {
+            font-size: clamp(16px, 2.5vw, 20px);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: rgba(250, 250, 250, 0.9);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 4px solid var(--fire-red);
+        }
+
+        .badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: var(--honey-yellow);
+            color: var(--coal-black);
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bebas Neue', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transform: rotate(15deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(15deg) translateY(0); }
+            50% { transform: rotate(15deg) translateY(-10px); }
+        }
+
+        .badge .price {
+            font-size: 48px;
+            line-height: 1;
+        }
+
+        .badge .label {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--fire-red);
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 20px 50px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(211, 47, 47, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(211, 47, 47, 0.6);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .urgency-tag {
+            display: inline-block;
+            background: var(--honey-yellow);
+            color: var(--coal-black);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 100px 0;
+            background: var(--charcoal);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(36px, 6vw, 56px);
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--honey-yellow);
+            letter-spacing: 2px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .problem-card {
+            background: var(--coal-black);
+            padding: 40px 30px;
+            border-left: 5px solid var(--fire-red);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(211, 47, 47, 0.2);
+        }
+
+        .problem-card .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .problem-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--honey-yellow);
+        }
+
+        .problem-card p {
+            color: rgba(250, 250, 250, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--coal-black) 0%, var(--dark-red) 100%);
+        }
+
+        .solution-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .solution-intro p {
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: rgba(250, 250, 250, 0.9);
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .benefit-item .checkmark {
+            width: 40px;
+            height: 40px;
+            background: var(--fire-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .benefit-item h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--honey-yellow);
+        }
+
+        .benefit-item p {
+            color: rgba(250, 250, 250, 0.8);
+            font-size: 16px;
+        }
+
+        /* Author Section */
+        .author-section {
+            padding: 100px 0;
+            background: var(--charcoal);
+        }
+
+        .author-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--fire-red), var(--warm-orange));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .author-text h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--honey-yellow);
+        }
+
+        .author-text .credentials {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--fire-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .author-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: rgba(250, 250, 250, 0.9);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 0;
+            background: var(--coal-black);
+        }
+
+        .pricing-box {
+            max-width: 600px;
+            margin: 60px auto 0;
+            background: linear-gradient(135deg, var(--charcoal), var(--coal-black));
+            border: 3px solid var(--fire-red);
+            border-radius: 12px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(211, 47, 47, 0.3);
+            position: relative;
+        }
+
+        .pricing-box::before {
+            content: '⚡ OFFERTA LIMITATA ⚡';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--honey-yellow);
+            color: var(--coal-black);
+            padding: 10px 30px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 2px;
+        }
+
+        .price-display {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 96px;
+            color: var(--honey-yellow);
+            line-height: 1;
+            margin: 30px 0 20px;
+            text-shadow: 0 0 40px rgba(255, 193, 7, 0.4);
+        }
+
+        .price-label {
+            font-size: 18px;
+            color: rgba(250, 250, 250, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            font-size: 16px;
+            color: var(--fire-red);
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .included-list {
+            text-align: left;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .included-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .included-list li:last-child {
+            border-bottom: none;
+        }
+
+        .included-list li::before {
+            content: '✓';
+            color: var(--honey-yellow);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+            background: var(--charcoal);
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            background: var(--coal-black);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+            color: var(--honey-yellow);
+        }
+
+        .faq-question:hover {
+            background: rgba(211, 47, 47, 0.1);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 32px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 30px;
+            color: rgba(250, 250, 250, 0.8);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 30px 25px 30px;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark-red), var(--coal-black));
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(36px, 6vw, 64px);
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .footer-cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: rgba(250, 250, 250, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: var(--coal-black);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: rgba(250, 250, 250, 0.6);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--honey-yellow);
+            text-decoration: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                max-width: 400px;
+            }
+
+            .author-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .author-image {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .pricing-box {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+
+            .badge {
+                width: 100px;
+                height: 100px;
+                top: -10px;
+                right: -10px;
+            }
+
+            .badge .price {
+                font-size: 32px;
+            }
+
+            .badge .label {
+                font-size: 11px;
+            }
+
+            .cta-button {
+                width: 100%;
+                font-size: 20px;
+                padding: 18px 30px;
+            }
+
+            .problem-section,
+            .solution-section,
+            .author-section,
+            .pricing-section,
+            .faq-section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="urgency-tag">⚡ Solo primi 100 acquirenti</div>
+                    <h1>
+                        IMPASTO<br>
+                        <span class="highlight">PERFETTO</span>
+                    </h1>
+                    <p class="subtitle">La guida definitiva per risolvere il problema della lievitazione</p>
+                    <p>
+                        <strong>Basta impasti che non lievitano.</strong> Scopri i 3 errori fatali che fanno tutti 
+                        e la ricetta definitiva che funziona SEMPRE. Da chi ha fatto migliaia di pizze ogni settimana 
+                        per 15 anni.
+                    </p>
+                    <a href="#pricing" class="cta-button">
+                        <span>ACQUISTA ORA €7,90</span>
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <img src="data:image/svg+xml,%3Csvg width='500' height='700' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='500' height='700' fill='%238B0000'/%3E%3Ctext x='50%25' y='40%25' font-size='80' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial'%3EIMPASTO%3C/text%3E%3Ctext x='50%25' y='55%25' font-size='80' font-weight='bold' fill='%23FFC107' text-anchor='middle' font-family='Arial'%3EPERFETTO%3C/text%3E%3C/svg%3E" alt="Copertina Impasto Perfetto">
+                    <div class="badge">
+                        <div class="label">SOLO</div>
+                        <div class="price">€7,90</div>
+                        <div class="label">Primi 100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container-narrow">
+            <h2 class="section-title">Ti suona familiare?</h2>
+            <p style="text-align: center; font-size: 20px; margin-bottom: 50px; color: rgba(250, 250, 250, 0.9);">
+                Leggo queste frasi <strong>ogni singolo giorno</strong> nei commenti dei miei video...
+            </p>
+        </div>
+        <div class="container">
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">😤</div>
+                    <h3>"L'impasto non lievita"</h3>
+                    <p>Aspetti ore e ore, ma l'impasto resta lì, piatto, duro. Alla fine lo butti e ordini pizza.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">🤔</div>
+                    <h3>"Viene duro come un mattone"</h3>
+                    <p>Dopo la cottura è immangiabile. Duro fuori, crudo dentro. Ti scoraggi e pensi "non fa per me".</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">😩</div>
+                    <h3>"Ho provato 10 ricette diverse"</h3>
+                    <p>Ogni video su YouTube dice una cosa diversa. Sei confuso e non sai più a chi credere.</p>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 24px; margin-top: 60px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <strong>Il problema NON sei tu.</strong><br>
+                Il problema è che <span style="color: var(--honey-yellow);">nessuno ti ha spiegato cosa fare davvero.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container-narrow">
+            <h2 class="section-title">Cosa troverai nella guida</h2>
+            <div class="solution-intro">
+                <p>
+                    Non teoria. Non ricette copiate da altri. Solo quello che <strong>funziona davvero</strong>, 
+                    testato migliaia di volte in pizzeria.
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="checkmark">✓</div>
+                    <div>
+                        <h4>I 3 ERRORI FATALI</h4>
+                        <p>Temperatura acqua sbagliata, sale e lievito a contatto, ambiente sbagliato. Ti spiego esattamente come evitarli.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="checkmark">✓</div>
+                    <div>
+                        <h4>LA RICETTA DEFINITIVA</h4>
+                        <p>Quella che ho usato per 15 anni. Ingredienti precisi, procedimento passo-passo, tempistiche esatte. Funziona SEMPRE.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="checkmark">✓</div>
+                    <div>
+                        <h4>3 TEST INFALLIBILI</h4>
+                        <p>Come capire quando l'impasto è pronto davvero (non basta guardare l'orologio).</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="checkmark">✓</div>
+                    <div>
+                        <h4>TROUBLESHOOTING COMPLETO</h4>
+                        <p>Cosa fare se l'impasto non lievita, è troppo appiccicoso, è lievitato troppo, o la pizza viene dura.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="checkmark">✓</div>
+                    <div>
+                        <h4>BONUS: RICETTA SEGRETA</h4>
+                        <p>Il trucco della lievitazione lenta in frigo che usavo in pizzeria per impasto ancora più soffice e digeribile.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="checkmark">✓</div>
+                    <div>
+                        <h4>15 PAGINE DI CONTENUTO</h4>
+                        <p>Zero fuffa. Solo informazioni pratiche, concrete, che puoi applicare subito.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="author-section">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 60px;">Chi sono</h2>
+            <div class="author-content">
+                <div class="author-image">
+                    🍕
+                </div>
+                <div class="author-text">
+                    <h2>Il Pizzaiolo</h2>
+                    <p class="credentials">15 anni di esperienza nella pizzeria</p>
+                    <p>
+                        Ho fatto il pizzaiolo per 15 anni nella mia attività. <strong>Migliaia di impasti a settimana</strong>, 
+                        ogni singolo giorno.
+                    </p>
+                    <p>
+                        Quando dico che ho visto TUTTI gli errori possibili, intendo proprio tutti. Ho aiutato centinaia 
+                        di persone a fare l'impasto perfetto attraverso i miei contenuti su Instagram e TikTok 
+                        (<strong>@ilpizzaiolo</strong>).
+                    </p>
+                    <p>
+                        Questa guida nasce perché sono stanco di vedere persone che si scoraggiano dopo il primo tentativo 
+                        fallito. Qui dentro c'è tutto quello che serve, senza filtri, senza teoria inutile.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container-narrow">
+            <h2 class="section-title">Investi nella tua pizza</h2>
+            <p style="text-align: center; font-size: 20px; margin-bottom: 20px; color: rgba(250, 250, 250, 0.9);">
+                Quanto vale per te fare <strong>finalmente</strong> l'impasto perfetto?
+            </p>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 40px; color: rgba(250, 250, 250, 0.7);">
+                Meno di due pizze d'asporto. Ma questa guida te la tieni per sempre.
+            </p>
+
+            <div class="pricing-box">
+                <p class="price-label">Prezzo di lancio</p>
+                <div class="price-display">€7,90</div>
+                <p class="price-note">Solo per i primi 100 acquirenti · Poi €9,90</p>
+
+                <ul class="included-list">
+                    <li>Guida PDF completa (15 pagine)</li>
+                    <li>I 3 errori fatali spiegati nel dettaglio</li>
+                    <li>Ricetta definitiva passo-passo</li>
+                    <li>Test per capire quando l'impasto è pronto</li>
+                    <li>Troubleshooting per ogni problema</li>
+                    <li>BONUS: Ricetta segreta della pizzeria</li>
+                    <li>Accesso immediato al download</li>
+                    <li>Tua per sempre</li>
+                </ul>
+
+                <a href="https://gumroad.com/l/TUOLINKQUI" class="cta-button">
+                    <span>ACQUISTA ORA €7,90</span>
+                </a>
+
+                <p style="margin-top: 30px; font-size: 14px; color: rgba(250, 250, 250, 0.6);">
+                    Pagamento sicuro tramite Gumroad · Download immediato dopo l'acquisto
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container-narrow">
+            <h2 class="section-title">Domande frequenti</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Questa guida funziona anche con il forno di casa?</div>
+                <div class="faq-answer">
+                    Assolutamente sì. La ricetta è stata testata in TUTTI i tipi di forno casalingo (elettrico, gas, ventilato, statico). 
+                    Ti spiego anche come adattare temperatura e tempi al tuo forno.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Sono un principiante, è adatta a me?</div>
+                <div class="faq-answer">
+                    Sì, è perfetta per te. Spiego tutto dal principio, passo-passo, come se fossi accanto a te in cucina. 
+                    Zero termini tecnici incomprensibili, solo istruzioni chiare e pratiche.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Cosa succede dopo l'acquisto?</div>
+                <div class="faq-answer">
+                    Ricevi immediatamente via email il link per scaricare la guida in PDF. Puoi leggerla su telefono, tablet, 
+                    computer o stamparla. È tua per sempre.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Posso chiedere rimborso se non funziona?</div>
+                <div class="faq-answer">
+                    Se segui la ricetta e i passaggi come spiegato, FUNZIONA. Ma se per qualsiasi motivo non sei soddisfatto, 
+                    scrivimi entro 30 giorni e ti rimborso immediatamente. Zero domande.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Serve attrezzatura speciale?</div>
+                <div class="faq-answer">
+                    No. Serve solo quello che hai già in cucina: ciotola, farina, acqua, lievito, sale, forno. 
+                    Niente planetaria, niente termometri, niente attrezzi strani. Solo le tue mani e il forno.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Perché solo €7,90?</div>
+                <div class="faq-answer">
+                    È il prezzo di lancio per i primi 100 acquirenti. Voglio che più persone possibile la provino e vedano i risultati. 
+                    Dopo i primi 100, il prezzo sale a €9,90.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container-narrow">
+            <h2>
+                Pronto a fare l'impasto<br>
+                perfetto ogni volta?
+            </h2>
+            <p>
+                Niente più tentativi a caso. Niente più impasti duri.<br>
+                Solo pizza come piace a te, ogni volta che vuoi.
+            </p>
+            <a href="#pricing" class="cta-button">
+                <span>ACQUISTA ORA €7,90</span>
+            </a>
+            <p style="margin-top: 30px; font-size: 16px; color: rgba(250, 250, 250, 0.7);">
+                ⚡ Offerta valida solo per i primi 100 acquirenti
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-narrow">
+            <p>
+                © 2026 Il Pizzaiolo · Tutti i diritti riservati<br>
+                Seguimi su Instagram e TikTok: <a href="https://instagram.com/ilpizzaiolo" target="_blank">@ilpizzaiolo</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- FAQ Toggle Script -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const wasActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
